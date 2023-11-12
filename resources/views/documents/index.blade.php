@@ -15,7 +15,8 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{url('documents/')}}">Registro de Documentos</a>
+                    <a class="nav-link active" aria-current="page" href="{{url('documents/')}}">Registro de
+                        Documentos</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{url('documents/create')}}">Crear Documento</a>
@@ -35,6 +36,34 @@
 <main>
     <div class="container py-4">
         <h2>Registro de Documentos</h2>
-</main>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Id. Doc</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Cod. Documento</th>
+                    <th scope="col">Contenido</th>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Proceso</th>
+                    <th scope="col">Modificar</th>
+                    <th scope="col">Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($documentos as $documento)
+                <tr>
+                    <td>{{$documento->DOC_ID}}</td>
+                    <td>{{$documento->DOC_NOMBRE}}</td>
+                    <td>{{$documento->DOC_CODIGO}}</td>
+                    <td>{{$documento->DOC_CONTENIDO}}</td>
+                    <td>{{$documento->tipo_tipo_doc->TIP_NOMBRE}}</td>
+                    <td>{{$documento->pro_proceso->PRO_NOMBRE}}</td>
+                    <td>modificar</td>
+                    <td>eliminar</td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
 
-</div>
+    </div>
+</main>

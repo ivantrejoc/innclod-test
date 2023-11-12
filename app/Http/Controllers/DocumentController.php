@@ -14,7 +14,8 @@ class DocumentController extends Controller
      */
     public function index()
     {
-        return view('documents.index');
+        $documentos= DocDocumento::all();
+        return view('documents.index', ['documentos'=> $documentos]);
     }
 
     /**
