@@ -22,9 +22,9 @@ class DocumentController extends Controller
      */
     public function create()
     {
-        $types= TipoTipoDoc::all();
-        $process= ProProceso::all();
-        return view('documents.create',['procesos'=>$process,'tipos'=>$types]);
+        $types = TipoTipoDoc::all();
+        $process = ProProceso::all();
+        return view('documents.create', ['procesos' => $process, 'tipos' => $types]);
     }
 
     /**
@@ -32,12 +32,13 @@ class DocumentController extends Controller
      */
     public function store(Request $request)
     {
+       
         $request->validate([
-            'docName' => 'required | unique:documents |max:60',
-            'docCode'=> 'required | unique:documents | max:40',
-            'docContent'=> 'required | max:4000',
-            'docTipo'=> 'required',
-            'procTipo'=> 'required',
+            'docName' => 'required|max:60',
+            'docCode' => 'required|max:40',
+            'docContent' => 'required | max:4000',
+            'docTipo' => 'required',
+            'procTipo' => 'required',
         ]);
 
         $doc = new DocDocumento();
@@ -46,9 +47,15 @@ class DocumentController extends Controller
         $DOC_CONTENIDO = $request->input('docContent');
         $DOC_ID_tipo = $request->input('docTipo');
         $DOC_ID_PROCESO = $request->input('procTipo');
+
+        $doc->DOC_NOMBRE = $DOC_NOMBRE;
+        $doc->DOC_CODIGO = $DOC_CODIGO;
+        $doc->DOC_CONTENIDO = $DOC_CONTENIDO;
+        $doc->DOC_ID_TIPO = $DOC_ID_tipo;
+        $doc->DOC_ID_PROCESO = $DOC_ID_PROCESO;
         $doc->save();
 
-        return view("documents.message",['message'=> "Nuevo documento creado"]);
+        return view("documents.message", ['message' => "Nuevo documento creado"]);
     }
 
     /**
