@@ -56,7 +56,7 @@ class DocumentController extends Controller
         $doc->DOC_ID_PROCESO = $DOC_ID_PROCESO;
         $doc->save();
 
-        return view("documents.message", ['message' => "Nuevo documento creado"]);
+        return redirect('/documents');
     }
 
     /**
@@ -70,24 +70,49 @@ class DocumentController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(DocDocumento $docDocumento)
+    public function edit($id)
     {
-        //
+        $document = DocDocumento::find($id);
+        $types = TipoTipoDoc::all();
+        $process = ProProceso::all();
+        return view('documents.edit', ['document'=> $document, 'procesos' => $process, 'tipos' => $types]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, DocDocumento $docDocumento)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'docName' => 'required|max:60',
+            'docCode' => 'required|max:40',
+            'docContent' => 'required | max:4000',
+            'docTipo' => 'required',
+            'procTipo' => 'required',
+        ]);
+
+        $document = DocDocumento::find($id);
+        
+        $document->DOC_NOMBRE = $request->input('docName');
+        $document->DOC_CODIGO =  $request->input('docCode');
+        $document->DOC_CONTENIDO = $request->input('docContent');
+        $document->DOC_ID_TIPO = $request->input('docTipo');
+        $document->DOC_ID_PROCESO = $request->input('procTipo');
+
+        $document->save();
+
+        return view("documents.message", ['message' => "Documento modificado"]);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(DocDocumento $docDocumento)
+    public function destroy($id)
     {
-        //
+        print("ESTE ES EL ID QUE LLEGA POR ELIMINAR $id");
+        $document = DocDocumento::find($id);
+        $document->delete();
+
+        return redirect("/documents");
     }
 }

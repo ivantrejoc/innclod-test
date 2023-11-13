@@ -2,7 +2,7 @@
 
 @extends("layouts/template")
 
-@section("title","Crear Documento")
+@section("title","Editar Documento")
 
 @section("content")
 <nav class="navbar navbar-expand navbar-dark bg-primary">
@@ -28,9 +28,10 @@
         </div>
     </div>
 </nav>
+
 <main>
     <div class="container py-4">
-        <h2>Crear Nuevo Documento</h2>
+        <h2>Editar Documento</h2>
 
         @if($errors ->any())
         <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -43,22 +44,23 @@
         </div>
         @endif
 
-        <form action="{{url('documents')}}" method="post">
-            @csrf
-            <div class="mb-3">
+        <form action="{{url('documents/'.$document->DOC_ID)}}" method="post">       
+        @csrf
+        @method('PUT')
+                    <div class="mb-3">
                 <label for="docName" class="form-label">Nombre</label>
-                <input type="text" class="form-control" id="docName" name="docName">
+                <input type="text" class="form-control" id="docName" name="docName" value="{{$document->DOC_NOMBRE}}">
             </div>
 
             <div class="mb-3">
                 <label for="docCode" class="form-label">Cod. Documento</label>
-                <input type="text" class="form-control" id="docCode" name="docCode" placeholder="ejemplo: INS-DES-20">
+                <input type="text" class="form-control" id="docCode" name="docCode" value="{{$document->DOC_CODIGO}}">
             </div>
 
             <div class="mb-3">
                 <label for="docContent" class="form-label">Contenido</label>
-                <textarea name="docContent" id="docContent" class="form-control" cols="5" rows="4"
-                    placeholder="Detalles del documento..."></textarea>
+                <textarea name="docContent" id="docContent" class="form-control" cols="5"
+                    rows="4" placeholder="{{$document->DOC_CONTENIDO}}"></textarea>
             </div>
 
             <div class="mb-3">

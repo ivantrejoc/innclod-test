@@ -1,7 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DocumentController;
+use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +16,7 @@ use App\Http\Controllers\DocumentController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Route::middleware([
@@ -25,8 +26,12 @@ Route::middleware([
 ])->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
-    })->name('dashboard');
+    })->name('dashboard');    
 });
 
-/*Esta ruta contiene todos los recursos para hacer request a la BDD*/
+// Route::get('documents/', [DocumentController::class, 'index']);
+
+// Route::put('documents/{$documento->DOC_ID}', [DocumentController::class, 'edit'])->name('document.edit');
 Route::resource('/documents', DocumentController::class);
+
+

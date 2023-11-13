@@ -2,7 +2,7 @@
 
 @extends("layouts/template")
 
-<!-- @section("title","Registro de Documentos") -->
+@section("title","Registro de Documentos")
 
 @section("content")
 <nav class="navbar navbar-expand navbar-dark bg-primary">
@@ -22,13 +22,15 @@
                     <a class="nav-link" href="{{url('documents/create')}}">Crear Documento</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{url('documents/edit')}}">Modificar Documento</a>
+                    <a class="btn btn-danger" href="{{url('/')}}">Cerrar Sesión</a>
                 </li>
             </ul>
             <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
+                <input class="form-control me-2" type="search" placeholder="Cod. Documento" aria-label="Search"
+                    value="">
+                <button class="btn btn-outline-success" type="submit">Buscar</button>
             </form>
+
         </div>
     </div>
 </nav>
@@ -45,8 +47,8 @@
                     <th scope="col">Contenido</th>
                     <th scope="col">Tipo</th>
                     <th scope="col">Proceso</th>
-                    <th scope="col">Modificar</th>
-                    <th scope="col">Eliminar</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
@@ -58,8 +60,16 @@
                     <td>{{$documento->DOC_CONTENIDO}}</td>
                     <td>{{$documento->tipo_tipo_doc->TIP_NOMBRE}}</td>
                     <td>{{$documento->pro_proceso->PRO_NOMBRE}}</td>
-                    <td>modificar</td>
-                    <td>eliminar</td>
+                    <td><a href="{{url('documents/'.$documento->DOC_ID.'/edit')}}"
+                            class="btn btn-warning btn-sm">Editar</a>
+                    </td>
+                    <td>
+                        <form action="{{url('documents/'.$documento->DOC_ID)}}" method="post">
+                            @method('DELETE')
+                            @csrf
+                            <input type="submit" class="btn btn-danger btn-sm" value="Eliminar"></input>
+                        </form>
+                    </td>
                 </tr>
                 @endforeach
             </tbody>

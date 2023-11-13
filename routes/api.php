@@ -19,5 +19,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-/*Esta ruta contiene todos los recursos para hacer request a la BDD*/
-Route::resource('/documents', DocumentController::class);
+// /*Esta ruta contiene todos los recursos para hacer request a la BDD*/
+// Route::resource('/documents', DocumentController::class);
