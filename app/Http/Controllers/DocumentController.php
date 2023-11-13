@@ -14,8 +14,8 @@ class DocumentController extends Controller
      */
     public function index()
     {
-        $documentos= DocDocumento::all();
-        return view('documents.index', ['documentos'=> $documentos]);
+        $documentos = DocDocumento::all();
+        return view('documents.index', ['documentos' => $documentos]);
     }
 
     /**
@@ -33,7 +33,7 @@ class DocumentController extends Controller
      */
     public function store(Request $request)
     {
-       
+
         $request->validate([
             'docName' => 'required|max:60',
             'docCode' => 'required|max:40',
@@ -62,20 +62,22 @@ class DocumentController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(DocDocumento $docDocumento)
+    public function show(Request $request)
     {
-        //
+        $search = $request->get('search');
+        $documentos = DocDocumento::where('DOC_ID', $search);
+        
+        return view('documents.index', ['documentos' => $documentos]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+
+
     public function edit($id)
     {
         $document = DocDocumento::find($id);
         $types = TipoTipoDoc::all();
         $process = ProProceso::all();
-        return view('documents.edit', ['document'=> $document, 'procesos' => $process, 'tipos' => $types]);
+        return view('documents.edit', ['document' => $document, 'procesos' => $process, 'tipos' => $types]);
     }
 
     /**
@@ -92,9 +94,9 @@ class DocumentController extends Controller
         ]);
 
         $document = DocDocumento::find($id);
-        
+
         $document->DOC_NOMBRE = $request->input('docName');
-        $document->DOC_CODIGO =  $request->input('docCode');
+        $document->DOC_CODIGO = $request->input('docCode');
         $document->DOC_CONTENIDO = $request->input('docContent');
         $document->DOC_ID_TIPO = $request->input('docTipo');
         $document->DOC_ID_PROCESO = $request->input('procTipo');

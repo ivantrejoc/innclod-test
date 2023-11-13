@@ -24,14 +24,24 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');    
+    Route::get('/documents', function () {
+        return view('documents.index');
+    })->name('documents');    
 });
+
+// Route::middleware([
+//     'auth:sanctum',
+//     config('jetstream.auth_session'),
+//     'verified',
+// ])->group(function () {
+//     Route::get('/documents',  function () {
+//         return view('documents.index');
+//     })->name('documents.index');    
+// });
+
 
 // Route::get('documents/', [DocumentController::class, 'index']);
 
 // Route::put('documents/{$documento->DOC_ID}', [DocumentController::class, 'edit'])->name('document.edit');
 Route::resource('/documents', DocumentController::class);
-
 

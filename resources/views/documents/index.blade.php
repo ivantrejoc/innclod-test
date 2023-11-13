@@ -25,11 +25,8 @@
                     <a class="btn btn-danger" href="{{url('/')}}">Cerrar Sesión</a>
                 </li>
             </ul>
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Cod. Documento" aria-label="Search"
-                    value="">
-                <button class="btn btn-outline-success" type="submit">Buscar</button>
-            </form>
+
+
 
         </div>
     </div>
@@ -38,6 +35,12 @@
 <main>
     <div class="container py-4">
         <h2>Registro de Documentos</h2>
+        
+        <form class="d-flex" action="{{url('documents/')}}" method="get">
+                @csrf
+                <input name="search"class="form-control me-2" type="search" placeholder="Cod. Documento" aria-label="Search" name="search">
+                <button class="btn btn-success" type="submit">Buscar</button>
+            </form>
         <table class="table">
             <thead>
                 <tr>
