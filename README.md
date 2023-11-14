@@ -15,22 +15,18 @@ Prueba técnica Innclod Colombia (PHP, JS, MySQL).
 3.  Cree un archivo .env, copie y pegue todas las variables de entorno contenidas en el archivo .env.example.
     luego cambie las siguientes variables para conectar la base de datos:
 
-    DB_CONNECTION=mysql
-    
-    DB_HOST=127.0.0.1
-    
-    DB_PORT=3306
-    
-    DB_DATABASE=innclod
-    
-    DB_USERNAME=root
-    
-    DB_PASSWORD=
+   * DB_CONNECTION=mysql    
+   * DB_HOST=127.0.0.1    
+   * DB_PORT=3306    
+   * DB_DATABASE=innclod    
+   * DB_USERNAME= (username de phpMyAdmin)
+    *DB_PASSWORD= (password de phpMyAdmin)
     
 3.  Abra una terminal y ejecute los siguientes comandos:
     * npm install
     * npm run dev
     * composer require laravel/jetstream
+    * php artisan key:generate
     * php artisan serve 
 
 
