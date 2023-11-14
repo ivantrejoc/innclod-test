@@ -16,11 +16,17 @@ Prueba técnica Innclod Colombia (PHP, JS, MySQL).
     luego cambie las siguientes variables para conectar la base de datos:
 
     DB_CONNECTION=mysql
+    
     DB_HOST=127.0.0.1
+    
     DB_PORT=3306
+    
     DB_DATABASE=innclod
+    
     DB_USERNAME=root
+    
     DB_PASSWORD=
+    
 3.  Abra una terminal y ejecute los siguientes comandos:
     * npm install
     * npm run dev
