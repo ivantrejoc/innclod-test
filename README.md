@@ -1,11 +1,22 @@
 # innclod-test
 Prueba técnica Innclod Colombia (PHP, JS, MySQL).
 
+***REQUSITOS TÉCNICOS***
+* Node 18.18.0
+* npm  
+* Wampserver 3.3.0
+* Composer 2.6.5
+* php 8.2.0
+
 ***INSTRUCCIONES DE DESPLIEGUE***
 
-1. Descargar e importar archivo de base de datos innclod.sql en phpMyAdmin para tener la base de datos actualizada.
-2. Cree un archivo .env, copie y pegue todas las variables de entorno contenidas en el archivo .env.example.
-3. Abra una terminal y levante la aplicación con el comando: php artisan serve
+1.  Descargar e importar archivo de base de datos innclod.sql en phpMyAdmin para tener la base de datos actualizada.
+2.  Clone el repositorio y abra la carpeta del proyecto en VSC.
+3.  Cree un archivo .env, copie y pegue todas las variables de entorno contenidas en el archivo .env.example.
+3.  Abra una terminal y ejecute los siguientes comandos:
+    * npm install
+    * php artisan serve 
+
 
 
 ***INSTRUCCIONES DE USO***
